@@ -30,5 +30,10 @@ jobs:
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f requirements-test.txt ]; then pip install -r requirements-test.txt; fi
+      - name: Just run something I like
+        run: |
+          python -V
+          pip --version
+          pip list
 
 
