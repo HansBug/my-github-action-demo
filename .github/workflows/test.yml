@@ -23,6 +23,17 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 20
+      - name: Checkout demo code
+        uses: actions/checkout@v2
+        with:
+          repository: HansBug/plantumlcli-testfile
+          path: demo
+          fetch-depth: 20
+      - name: Set up System
+        run: |
+          sudo apt-get install -y tree cloc wget curl make
+          sudo apt-get install -y graphviz
+          sudo dot -c
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -44,5 +55,6 @@ jobs:
           pip list
           java -version
           javac -version
+          tree .
 
 
