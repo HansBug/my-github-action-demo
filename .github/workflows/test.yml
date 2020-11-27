@@ -10,6 +10,7 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
+          - macos-latest
         python-version:
           - '3.5'
           - '3.6'
@@ -36,11 +37,16 @@ jobs:
           repository: HansBug/plantumlcli-testfile
           path: demo
           fetch-depth: 20
-      - name: Set up System
+      - name: Set up System on Linux
+        if: ${{ runner.os == 'Linux' }}
         run: |
           sudo apt-get install -y tree cloc wget curl make
           sudo apt-get install -y graphviz
           sudo dot -c
+      - name: Set up System on Macos
+        if: ${{ runner.os == 'macOS' }}
+        run: |
+          brew install tree cloc wget curl make
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
