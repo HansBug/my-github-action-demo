@@ -42,11 +42,11 @@ jobs:
         run: |
           sudo apt-get install -y tree cloc wget curl make
           sudo apt-get install -y graphviz
-          sudo dot -c
       - name: Set up System on Macos
         if: ${{ runner.os == 'macOS' }}
         run: |
           brew install tree cloc wget curl make
+          brew install graphviz
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
